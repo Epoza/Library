@@ -68,25 +68,21 @@ body {
     background-color: rgb(132, 143, 202);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    padding: 30px 50px;
-    width: 500px;
+    padding: 30px 40px;
     max-width: 100%;
     text-align: center;
 }
 
 .form {
-    font-size: 20px;
+    font-size: 17px;
     color: black;
+    padding-bottom: 4px;
 }
 
 
 ::placeholder {
     font-size: 17px;
-    color: rgb(139, 139, 139);
-}
-
-.all-forms {
-    padding-bottom: 10px;
+    color: rgb(77, 77, 77);
 }
 
 .buttons {
@@ -97,7 +93,13 @@ body {
 }
 
 input[type=checkbox]{
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
+}
+
+input[type=text], input[type=number]{
+    height: 23px;
+    width: 90%;
+    font-size: 17px;
 }
 
