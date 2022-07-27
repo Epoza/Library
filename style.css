@@ -6,14 +6,16 @@
     margin: 0;
     box-sizing: border-box;
 }
-
 body {
-    background-color: #edeef6;
+    background-color: aqua;
 }
+
+
+/* --------------------- BEGIN HEADER --------------------- */
 
 .header {
     padding: 10px 0px;
-    height: clamp(50px, 20vh, 200px);
+    height: 20vh;
     background-color: rgb(128, 128, 245);
     font-size: 50px;
     color: rgb(70, 50, 109);
@@ -32,6 +34,22 @@ body {
     color: rgb(128, 128, 245);
     border: 3px solid rgb(121, 68, 165);
 }
+
+/* --------------------- BEGIN GRID/CARDS --------------------- */
+
+.card-holder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+    padding: 1em;
+}
+
+.card-holder > div {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+}
+/* --------------------- BEGIN MODAL --------------------- */
 
 .modal-container {
     background-color:rgba(0, 0, 0, 0.3);
@@ -102,4 +120,3 @@ input[type=text], input[type=number]{
     width: 90%;
     font-size: 17px;
 }
-
