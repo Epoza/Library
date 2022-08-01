@@ -48,22 +48,40 @@ body {
     padding: 10px;
     background-color: white;
     border: 1px solid black;
+    display: grid;
+    row-gap: 10px;
 }
 
-#card-title {
+.card-title {
     background-color: rgba(0, 0, 0, 0.247);
 }
 
-#card-author {
+.card-author {
     background-color: rgb(207, 130, 67);
 }
 
-#card-pages {
+.card-pages {
     background-color: rgb(150, 86, 202);
 }
 
-#card-read{
-    background-color: rgb(93, 184, 179);
+.read {
+    background-color: rgb(119, 209, 68);
+    color: green;
+}
+
+.not-read {
+    background-color: rgb(139, 31, 82);
+    color: red;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.button-container > button{
+    width: 50%;
 }
 /* --------------------- BEGIN MODAL --------------------- */
 

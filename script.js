@@ -2,6 +2,7 @@ const open = document.getElementById('open');
 const modalContainer = document.getElementById('modal-container')
 const close = document.getElementById('close');
 const form = document.getElementById('my-form');
+let i = 0;
 
 
 
@@ -35,7 +36,7 @@ function addBookToLibrary() {
     read = document.getElementById('read').checked;
     const newBook = new Book(title, author, pages, read) // takes form values and makes a new book
     myLibrary.push(newBook)
-    for (let i=0; i<myLibrary.length; i++){
+    for (i; i<myLibrary.length; i++){
         console.log(i)
         createCard(myLibrary[i]); // figure out why i resets
     }
@@ -50,33 +51,50 @@ function createCard(listNumber){
     const cardTitle =  document.createElement('div')
     const cardAuthor =  document.createElement('div')
     const cardPages =  document.createElement('div')
-    const cardRead =  document.createElement('div')
+    const cardButtons =  document.createElement('div')
+    const cardRead =  document.createElement('button')
+    const cardRemove = document.createElement('button')
+    newCard.classList.add('book')
     newCard.setAttribute('id', 'card' + myLibrary.indexOf(listNumber))
 
-    cardTitle.setAttribute('id', 'card-title')
+    cardTitle.classList.add('card-title')
     cardTitle.innerHTML = listNumber.title
     newCard.appendChild(cardTitle)
 
-    cardAuthor.setAttribute('id', 'card-author')
+    cardAuthor.classList.add('card-author')
     cardAuthor.innerHTML = listNumber.author
     newCard.appendChild(cardAuthor)
 
-    cardPages.setAttribute('id', 'card-pages')
+    cardPages.classList.add('card-pages')
     cardPages.innerHTML = listNumber.pages
     newCard.appendChild(cardPages)
 
-    cardRead.setAttribute('id', 'card-read')
+    cardButtons.classList.add('button-container')
+    newCard.appendChild(cardButtons)
+
+    cardRead.classList.add('card-read')
     cardRead.innerHTML = listNumber.read === true ? 'Read' : 'Not read' 
-    newCard.appendChild(cardRead)
+    listNumber.read === true ? cardRead.classList.toggle('read') : cardRead.classList.toggle('not-read');
+    cardButtons.appendChild(cardRead)
+
+    cardRemove.classList.add('card-remove')
+    cardRemove.innerHTML = 'remove book'
+    cardButtons.appendChild(cardRemove)
+
+    newCard.appendChild(cardButtons)
 
     removeCard.setAttribute('id', 'cards')
     cardHolder.appendChild(newCard)
 }
 
+// Eventlisteners
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     addBookToLibrary();
 });
+
+
 // function removeFromLibrary() {}
 
 // function editBook() {}
