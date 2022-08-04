@@ -49,8 +49,11 @@ function createCard(listNumber){
     const newCard = document.createElement('div');
     const removeCard = document.createElement('button')
     const cardTitle =  document.createElement('div')
+    const titleHeader = document.createElement('p')
     const cardAuthor =  document.createElement('div')
+    const authorHeader = document.createElement('p')
     const cardPages =  document.createElement('div')
+    const pagesHeader = document.createElement('p')
     const cardButtons =  document.createElement('div')
     const cardRead =  document.createElement('button')
     const cardRemove = document.createElement('button')
@@ -58,16 +61,26 @@ function createCard(listNumber){
     newCard.setAttribute('id', 'card' + myLibrary.indexOf(listNumber))
 
     cardTitle.classList.add('card-title')
-    cardTitle.innerHTML = listNumber.title
+    titleHeader.classList.add('card-headers')
+    titleHeader.innerHTML = listNumber.title
+    cardTitle.innerHTML = 'Title'
+    cardTitle.appendChild(titleHeader)
     newCard.appendChild(cardTitle)
 
     cardAuthor.classList.add('card-author')
-    cardAuthor.innerHTML = listNumber.author
+    authorHeader.classList.add('card-headers')
+    authorHeader.innerHTML = listNumber.author
+    cardAuthor.innerHTML = 'Author'
+    cardAuthor.appendChild(authorHeader)
     newCard.appendChild(cardAuthor)
 
     cardPages.classList.add('card-pages')
-    cardPages.innerHTML = listNumber.pages
+    pagesHeader.classList.add('card-headers')
+    pagesHeader.innerHTML = listNumber.pages
+    cardPages.innerHTML = 'Pages'
+    cardPages.appendChild(pagesHeader)
     newCard.appendChild(cardPages)
+    
 
     cardButtons.classList.add('button-container')
     newCard.appendChild(cardButtons)

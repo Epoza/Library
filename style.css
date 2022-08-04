@@ -39,6 +39,7 @@ body {
 
 .card-holder {
     display: grid;
+    height: clamp(100px, 280px, 600px);
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 1em;
     padding: 1em;
@@ -50,18 +51,19 @@ body {
     border: 1px solid black;
     display: grid;
     row-gap: 10px;
+    text-align: center;
 }
 
-.card-title {
+.card-headers{
+    font-size: 16px;
+    font-style: italic;
+    word-break: break-all;
+}
+
+.card-title, .card-author, .card-pages {
     background-color: rgba(0, 0, 0, 0.247);
-}
-
-.card-author {
-    background-color: rgb(207, 130, 67);
-}
-
-.card-pages {
-    background-color: rgb(150, 86, 202);
+    border-bottom: 1px solid black;
+    font-size: 18px;
 }
 
 .read {
@@ -81,6 +83,7 @@ body {
 }
 
 .button-container > button{
+    height: 50px;
     width: 50%;
 }
 /* --------------------- BEGIN MODAL --------------------- */
