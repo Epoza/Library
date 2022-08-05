@@ -49,36 +49,28 @@ function createCard(listNumber){
     const newCard = document.createElement('div');
     const removeCard = document.createElement('button')
     const cardTitle =  document.createElement('div')
-    const titleHeader = document.createElement('p')
     const cardAuthor =  document.createElement('div')
-    const authorHeader = document.createElement('p')
     const cardPages =  document.createElement('div')
-    const pagesHeader = document.createElement('p')
     const cardButtons =  document.createElement('div')
     const cardRead =  document.createElement('button')
     const cardRemove = document.createElement('button')
     newCard.classList.add('book')
     newCard.setAttribute('id', 'card' + myLibrary.indexOf(listNumber))
+    newCard.setAttribute('data-book', myLibrary.indexOf(listNumber))
 
     cardTitle.classList.add('card-title')
-    titleHeader.classList.add('card-headers')
-    titleHeader.innerHTML = listNumber.title
-    cardTitle.innerHTML = 'Title'
-    cardTitle.appendChild(titleHeader)
+    cardTitle.setAttribute('data-name', 'Title')
+    cardTitle.innerHTML = listNumber.title
     newCard.appendChild(cardTitle)
 
     cardAuthor.classList.add('card-author')
-    authorHeader.classList.add('card-headers')
-    authorHeader.innerHTML = listNumber.author
-    cardAuthor.innerHTML = 'Author'
-    cardAuthor.appendChild(authorHeader)
+    cardAuthor.setAttribute('data-name', 'Author')
+    cardAuthor.innerHTML = listNumber.author
     newCard.appendChild(cardAuthor)
 
     cardPages.classList.add('card-pages')
-    pagesHeader.classList.add('card-headers')
-    pagesHeader.innerHTML = listNumber.pages
-    cardPages.innerHTML = 'Pages'
-    cardPages.appendChild(pagesHeader)
+    cardPages.setAttribute('data-name', 'Pages')
+    cardPages.innerHTML = listNumber.pages
     newCard.appendChild(cardPages)
     
 
@@ -86,9 +78,11 @@ function createCard(listNumber){
     newCard.appendChild(cardButtons)
 
     cardRead.classList.add('card-read')
-    cardRead.innerHTML = listNumber.read === true ? 'Read' : 'Not read' 
-    listNumber.read === true ? cardRead.classList.toggle('read') : cardRead.classList.toggle('not-read');
+    cardRead.innerHTML = listNumber.read === true ? 'Read' : 'Not read';
+    cardRead.setAttribute('data-read', myLibrary.indexOf(listNumber))
+    listNumber.read === true ? cardRead.classList.add('book-read') : false
     cardButtons.appendChild(cardRead)
+    cardRead.addEventListener('click', toggleRead)
 
     cardRemove.classList.add('card-remove')
     cardRemove.innerHTML = 'remove book'
@@ -100,7 +94,19 @@ function createCard(listNumber){
     cardHolder.appendChild(newCard)
 }
 
+function toggleRead(e) {
+    let currentCard = myLibrary[e.currentTarget.getAttribute('data-read')]
+    currentCard.read = !currentCard.read
+    e.currentTarget.classList.toggle('book-read')
+    e.currentTarget.innerHTML = currentCard.read ? 'Read' : 'Not read'
+    console.log(currentCard)
+}
+
+
+
 // Eventlisteners
+
+
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();

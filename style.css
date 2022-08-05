@@ -39,7 +39,7 @@ body {
 
 .card-holder {
     display: grid;
-    height: clamp(100px, 280px, 600px);
+    height: clamp(100px, 300px, 600px);
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 1em;
     padding: 1em;
@@ -54,26 +54,35 @@ body {
     text-align: center;
 }
 
-.card-headers{
-    font-size: 16px;
-    font-style: italic;
-    word-break: break-all;
+[data-name]::before {
+    content: attr(data-name);
+    font-size: 18px;
+    font-style: normal;
 }
 
 .card-title, .card-author, .card-pages {
     background-color: rgba(0, 0, 0, 0.247);
     border-bottom: 1px solid black;
-    font-size: 18px;
+    font-size: 16px;
+    font-style: italic;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3px 0px;
 }
 
-.read {
-    background-color: rgb(119, 209, 68);
-    color: green;
-}
-
-.not-read {
+.card-read {
+    content: 'Not read';
     background-color: rgb(139, 31, 82);
     color: red;
+}
+
+button.book-read {
+    content: 'Read';
+    background-color: rgb(119, 209, 68);
+    color: green;
 }
 
 .button-container {
