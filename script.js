@@ -2,7 +2,6 @@ const open = document.getElementById('open');
 const modalContainer = document.getElementById('modal-container')
 const close = document.getElementById('close');
 const form = document.getElementById('my-form');
-let i = 0;
 
 
 
@@ -36,18 +35,24 @@ function addBookToLibrary() {
     read = document.getElementById('read').checked;
     const newBook = new Book(title, author, pages, read) // takes form values and makes a new book
     myLibrary.push(newBook)
-    for (i; i<myLibrary.length; i++){
+    updateCards()
+    console.log(myLibrary)
+    form.reset()
+}
+
+function updateCards() {
+    const display = document.getElementById('card-holder');
+    const books = document.querySelectorAll('.book');
+    books.forEach(book => display.removeChild(book));
+    for (let i=0; i<myLibrary.length; i++){
         console.log(i)
         createCard(myLibrary[i]); // figure out why i resets
     }
-    console.log(myLibrary)
-    form.reset()
 }
 
 function createCard(listNumber){
     const cardHolder = document.getElementById('card-holder');
     const newCard = document.createElement('div');
-    const removeCard = document.createElement('button')
     const cardTitle =  document.createElement('div')
     const cardAuthor =  document.createElement('div')
     const cardPages =  document.createElement('div')
@@ -84,13 +89,13 @@ function createCard(listNumber){
     cardButtons.appendChild(cardRead)
     cardRead.addEventListener('click', toggleRead)
 
-    cardRemove.classList.add('card-remove')
+    cardRemove.setAttribute('data-remove', myLibrary.indexOf(listNumber))
     cardRemove.innerHTML = 'remove book'
     cardButtons.appendChild(cardRemove)
+    cardRemove.addEventListener('click', removeCard)
+    
 
     newCard.appendChild(cardButtons)
-
-    removeCard.setAttribute('id', 'cards')
     cardHolder.appendChild(newCard)
 }
 
@@ -100,6 +105,13 @@ function toggleRead(e) {
     e.currentTarget.classList.toggle('book-read')
     e.currentTarget.innerHTML = currentCard.read ? 'Read' : 'Not read'
     console.log(currentCard)
+}
+
+function removeCard(e) {
+    console.log(e.target.getAttribute('data-remove'))
+    myLibrary.splice(e.target.getAttribute('data-remove'), 1)
+    console.log(myLibrary)
+   updateCards()
 }
 
 

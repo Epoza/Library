@@ -94,6 +94,7 @@ button.book-read {
 .button-container > button{
     height: 50px;
     width: 50%;
+    align-self: center;
 }
 /* --------------------- BEGIN MODAL --------------------- */
 
