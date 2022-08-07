@@ -3,8 +3,6 @@ const modalContainer = document.getElementById('modal-container')
 const close = document.getElementById('close');
 const form = document.getElementById('my-form');
 
-
-
 open.addEventListener('click', () => {
     modalContainer.classList.add('show')
 })
@@ -22,9 +20,6 @@ class Book {
         this.author = author;
         this.pages = pages;
         this.read = read;
-        // this.info = function(){
-        //     return title + ' by ' + author + ', ' + pages + ' pages, ' + read
-        // }
     }
 }
 
@@ -36,17 +31,15 @@ function addBookToLibrary() {
     const newBook = new Book(title, author, pages, read) // takes form values and makes a new book
     myLibrary.push(newBook)
     updateCards()
-    console.log(myLibrary)
     form.reset()
 }
 
 function updateCards() {
     const display = document.getElementById('card-holder');
     const books = document.querySelectorAll('.book');
-    books.forEach(book => display.removeChild(book));
+    books.forEach(book => display.removeChild(book)); // changes whenever book is added or removed
     for (let i=0; i<myLibrary.length; i++){
-        console.log(i)
-        createCard(myLibrary[i]); // figure out why i resets
+        createCard(myLibrary[i]);
     }
 }
 
@@ -93,7 +86,6 @@ function createCard(listNumber){
     cardRemove.innerHTML = 'remove book'
     cardButtons.appendChild(cardRemove)
     cardRemove.addEventListener('click', removeCard)
-    
 
     newCard.appendChild(cardButtons)
     cardHolder.appendChild(newCard)
@@ -104,29 +96,14 @@ function toggleRead(e) {
     currentCard.read = !currentCard.read
     e.currentTarget.classList.toggle('book-read')
     e.currentTarget.innerHTML = currentCard.read ? 'Read' : 'Not read'
-    console.log(currentCard)
 }
 
 function removeCard(e) {
-    console.log(e.target.getAttribute('data-remove'))
     myLibrary.splice(e.target.getAttribute('data-remove'), 1)
-    console.log(myLibrary)
    updateCards()
 }
-
-
-
-// Eventlisteners
-
-
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     addBookToLibrary();
 });
-
-
-// function removeFromLibrary() {}
-
-// function editBook() {}
-
