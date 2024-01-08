@@ -12,7 +12,8 @@ close.addEventListener('click', () => {
 })
 
 
-let myLibrary = []
+// Load data from local storage when the page is loaded
+let myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || [];
 
 class Book {
     constructor(title, author, pages, read) {
@@ -30,8 +31,10 @@ function addBookToLibrary() {
     read = document.getElementById('read').checked;
     const newBook = new Book(title, author, pages, read) // takes form values and makes a new book
     myLibrary.push(newBook)
+    saveToLocalStorage();
     updateCards()
     form.reset()
+
 }
 
 function updateCards() {
@@ -96,14 +99,32 @@ function toggleRead(e) {
     currentCard.read = !currentCard.read
     e.currentTarget.classList.toggle('book-read')
     e.currentTarget.innerHTML = currentCard.read ? 'Read' : 'Not read'
+    saveToLocalStorage();
 }
 
 function removeCard(e) {
     myLibrary.splice(e.target.getAttribute('data-remove'), 1)
    updateCards()
+   saveToLocalStorage();
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function retrieveFromLocalStorage() {
+    const display = document.getElementById('card-holder');
+    const books = document.querySelectorAll('.book');
+    books.forEach(book => display.removeChild(book)); // changes whenever book is added or removed
+    for (let i = 0; i < myLibrary.length; i++) {
+        createCard(myLibrary[i]);
+    }
 }
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     addBookToLibrary();
 });
+
+// load data from local storage when the page is loaded
+retrieveFromLocalStorage();
