@@ -188,3 +188,29 @@ input[type=text], input[type=number]{
     width: 90%;
     font-size: 17px;
 }
+
+input:invalid:required {
+    border: 2px solid rgb(255, 110, 110);
+}
+
+input:valid {
+    border: 2px solid var(--dark-purple);
+}
+  
+/* input error styling */
+
+.error {
+    width: 100%;
+    padding: 0;
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+
+    box-sizing: border-box;
+  }
+  
+  .error.active {
+    padding: 0.3em;
+  }
+  
