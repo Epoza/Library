@@ -34,7 +34,7 @@ function addBookToLibrary() {
     saveToLocalStorage();
     updateCards()
     form.reset()
-
+    modalContainer.classList.remove('show'); // Close the modal
 }
 
 function updateCards() {
