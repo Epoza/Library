@@ -24,11 +24,13 @@
                     <div class="form">
                         <input type="text" id="title" name="title" id="title" placeholder="Title" maxlength = "60" required>
                     </div>
+                    <span class="error" id="author-error" aria-live="polite"></span>
                     <div class="form">
                         <input type="text" id="author" name="author" id="author" placeholder="Author" maxlength = "30" required>
                     </div>
+                    <span class="error" id="pages-error" aria-live="polite"></span>
                     <div class="form">
-                        <input type="number" id="pages" name="pages" id="pages" placeholder="Pages" max = "9999" min="1">
+                        <input type="number" id="pages" name="pages" id="pages" placeholder="Pages" max = "9999" min="1" required>
                     </div>
                     <div class="form">
                         <label for="book-read">have you read this book?</label>
